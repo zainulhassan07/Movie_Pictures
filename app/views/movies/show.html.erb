@@ -9,12 +9,16 @@
   <strong>length:</strong>
   <%= @movie.length %>
 </p>
+<%= image_tag @movie.assets[0].image.url(:medium)  if @movie.assets[0].present? %> 
+<%= image_tag @movie.assets[1].image.url(:medium) if @movie.assets[1].present? %>
+
+
 <%= link_to 'show Watchlist', :watchlists %> ||
 <%= link_to 'Edit', edit_movie_path(@movie) %> ||
 <%= link_to 'Back', movies_path %> ||
 
 <% if current_user.watchlists.map(&:movie_id).include? @movie.id %>
-  <%= link_to 'remove from watchlist', watchlist_path(@remove),
+  <%= link_to 'remove from watchlist', watchlist_path(@remove, movie_id: @movie_id),
              method: :delete,
               data: { confirm: 'Are you sure' } %>
   <% else %>
@@ -44,8 +48,6 @@
     <%= comment.username %>
   </p>
 
-
- 
 <p>
   <% if current_user.id == comment.user_id %>
      <%= link_to 'Destroy Comment', comment_path(comment, movie_id: @movie.id),

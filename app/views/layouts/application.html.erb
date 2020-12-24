@@ -4,6 +4,7 @@
     <title>Movies</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
@@ -31,6 +32,12 @@
           <div style="padding-right: 10px;">
           </div>
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"btn btn-light btn-outline-danger" ,  style: "color: red;"%>
+          <%= link_to "Edit user Profile", edit_user_registration_path  , class:"btn btn-light btn-outline-danger" ,  style: "color: green;"%>
+          <div>
+          <% if user_signed_in? %>
+            <%= image_tag current_user.avatar.url(:thumb) %>
+          <% end %>
+          </div>
         <%else%>
           <div style="padding-right: 10px;">
           </div>
@@ -41,6 +48,7 @@
         <%end%>
       </form>
     </nav>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     

@@ -1,17 +1,16 @@
-<%= simple_form_for @movie do |f| %>
 <% if @movie.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@movie.errors.count, "error") %> prohibited
-        this movie from being saved:
-      </h2>
-      <ul>
-        <% @movie.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@movie.errors.count, "error") %> prohibited
+      this movie from being saved:
+    </h2>
+    <ul>
+      <% @movie.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
   
 <p>
   <%= f.label :title %><br>
@@ -24,10 +23,15 @@
 </p>
 
 <p>
+  <%= f.simple_fields_for :assets do |a|%>
+    <%= a.input :image, as: :file %>
+  <% end %>
+</p>
+
+<p>
   <%= f.hidden_field :user_id , value: current_user.id %>
 </p>
 
 <p>
   <%= f.submit %>
 </p>
-<% end %>

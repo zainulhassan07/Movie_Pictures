@@ -2,12 +2,15 @@
 <table>
   <tr>
     <th>Movie Name</th>
+    <th>Movie Picture</th>
     <th></th>
   </tr>
 
   <% @watchlists.each do |watchlist| %>
     <tr>
       <td><%= watchlist.title %></td>
+      <td><%= image_tag watchlist.movie.assets[0].image.url(:medium)  if watchlist.movie.assets[0].present? %></td> 
+      <td><%= image_tag watchlist.movie.assets[1].image.url(:medium) if watchlist.movie.assets[1].present? %></td>
       <td><%= link_to 'Delete', watchlist_path(watchlist),
              method: :delete,
               data: { confirm: 'Are you sure' } %></td>
