@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <th>Movie Name</th>
+    <th>Movie length:</th>
+    <th>Movie Pictures</th>
+    <th></th>
+  </tr>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td><%= movie.title %></td>
+      <td><%= movie.length %></td>
+      <td><%= image_tag movie.assets[0].image.url(:medium)  if movie.assets[0].present? %></td> 
+      <td><%= image_tag movie.assets[1].image.url(:medium) if movie.assets[1].present? %></td>
+      <td><%= link_to 'show', movie_path(movie) %></td>
+      <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+      <td><%= link_to 'Delete', movie_path(movie),
+             method: :delete,
+              data: { confirm: 'Are you sure', remote: true }, class: "delete" %></td>
+
+    </tr>
+  <% end %>
+</table>
