@@ -1,3 +1,4 @@
+
 <% if @movie.errors.any? %>
   <div id="error_explanation">
     <h2>
@@ -25,6 +26,16 @@
 <p>
   <%= f.simple_fields_for :assets do |a|%>
     <%= a.input :image, as: :file %>
+  <% end %>
+</p>
+
+
+
+<p>
+  <h3>Or create a new Director:</h3>
+  <%= f.fields_for :director, Director.new do |director_attributes|%>
+      <%= director_attributes.label :name, "Director Name:" %>
+      <%= director_attributes.text_field :name %>
   <% end %>
 </p>
 

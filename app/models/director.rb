@@ -1,3 +1,3 @@
 class Director < ApplicationRecord
-  has_many :movies, dependent: :destroy
+  belongs_to :movie
 end

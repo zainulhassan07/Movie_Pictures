@@ -15,11 +15,11 @@ class MoviesController < ApplicationController
   
   def new
     @movie = Movie.new
+    @directors = Director.all
     2.times{ @movie.assets.build } 
   end
   
   def create
-    
     @movie = Movie.new(movie_params)
     if @movie.save
       flash[:notice] = "Your movie succesfully created"
@@ -75,7 +75,7 @@ class MoviesController < ApplicationController
   
   private
   def movie_params
-    params.require(:movie).permit(:title, :length, :user_id, :username, assets_attributes: [:id, :title, :image, :image_file_name, :_destroy])
+    params.require(:movie).permit(:title, :length, :user_id, :username,  director_attributes: [:id, :name, :movie_id ], assets_attributes: [:id, :title, :image, :image_file_name, :_destroy] )
   end
   
   def find_movie

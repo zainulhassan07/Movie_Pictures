@@ -12,6 +12,10 @@
 <%= image_tag @movie.assets[0].image.url(:medium)  if @movie.assets[0].present? %> 
 <%= image_tag @movie.assets[1].image.url(:medium) if @movie.assets[1].present? %>
 
+<p>
+  <strong>Director:</strong>
+  <%= @movie.director.name %>
+</p> 
 
 <%= link_to 'show Watchlist', :watchlists %> ||
 <%= link_to 'Edit', edit_movie_path(@movie) %> ||
@@ -47,7 +51,7 @@
     <strong>Username:</strong>
     <%= comment.username %>
   </p>
-
+ 
 <p>
   <% if current_user.id == comment.user_id %>
      <%= link_to 'Destroy Comment', comment_path(comment, movie_id: @movie.id),

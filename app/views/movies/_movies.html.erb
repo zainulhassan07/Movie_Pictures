@@ -11,6 +11,7 @@
       <td><%= movie.length %></td>
       <td><%= image_tag movie.assets[0].image.url(:medium)  if movie.assets[0].present? %></td> 
       <td><%= image_tag movie.assets[1].image.url(:medium) if movie.assets[1].present? %></td>
+      <td><%#= video_player src: { mp4: '/videos/some.mp4' }, controls: true %></td>
       <td><%= link_to 'show', movie_path(movie) %></td>
       <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
       <td><%= link_to 'Delete', movie_path(movie),

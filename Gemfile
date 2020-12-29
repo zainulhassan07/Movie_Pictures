@@ -57,5 +57,7 @@ gem 'devise'
 
 gem "simple_form"
 
+gem 'video-js-rails'
+
 gem "paperclip", "~> 6.0.0"
 
