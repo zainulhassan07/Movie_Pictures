@@ -33,11 +33,24 @@
 
 <p>
   <h3>Or create a new Director:</h3>
-  <%= f.fields_for :director, Director.new do |director_attributes|%>
-      <%= director_attributes.label :name, "Director Name:" %>
-      <%= director_attributes.text_field :name %>
+  <%= f.fields_for :director, Director.new do |dir|%>
+      <%= dir.label :name, "Director Name:" %>
+      <%= dir.text_field :name %>
+
+  <p>
+  
+  <h3>Create Production:</h3>
+  <%= dir.fields_for :productions, Production.new do |production_attributes|%>
+      <%= production_attributes.label :name, "Production Team:" %>
+      <%= production_attributes.text_field :name %>
   <% end %>
 </p>
+  <% end %>
+</p>
+
+
+
+
 
 <p>
   <%= f.hidden_field :user_id , value: current_user.id %>

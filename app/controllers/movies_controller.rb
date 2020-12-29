@@ -15,7 +15,6 @@ class MoviesController < ApplicationController
   
   def new
     @movie = Movie.new
-    @directors = Director.all
     2.times{ @movie.assets.build } 
   end
   
@@ -75,7 +74,7 @@ class MoviesController < ApplicationController
   
   private
   def movie_params
-    params.require(:movie).permit(:title, :length, :user_id, :username,  director_attributes: [:id, :name, :movie_id ], assets_attributes: [:id, :title, :image, :image_file_name, :_destroy] )
+    params.require(:movie).permit(:title, :length, :user_id, :username, assets_attributes: [:id, :title, :image, :image_file_name, :_destroy], director_attributes: [:id, :name, :movie_id, productions_attributes: [:id, :director_id, :name, :movie_id] ])
   end
   
   def find_movie

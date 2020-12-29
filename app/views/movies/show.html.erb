@@ -17,6 +17,15 @@
   <%= @movie.director.name %>
 </p> 
 
+<% @movie.director.productions.each do |p| %>
+
+<p>
+  <strong>Production:</strong>
+  <%= p.name %>
+</p>
+  
+<% end %>
+
 <%= link_to 'show Watchlist', :watchlists %> ||
 <%= link_to 'Edit', edit_movie_path(@movie) %> ||
 <%= link_to 'Back', movies_path %> ||
