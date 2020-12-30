@@ -1,4 +1,4 @@
-
+<%= simple_form_for @movie, :html => {:multipart => true} do |f| %>
 <% if @movie.errors.any? %>
   <div id="error_explanation">
     <h2>
@@ -40,17 +40,13 @@
   <p>
   
   <h3>Create Production:</h3>
-  <%= dir.fields_for :productions, Production.new do |production_attributes|%>
-      <%= production_attributes.label :name, "Production Team:" %>
-      <%= production_attributes.text_field :name %>
+  <%= dir.fields_for :productions, Production.new do |production|%>
+      <%= production.label :name, "Production Team:" %>
+      <%= production.text_field :name %>
   <% end %>
 </p>
   <% end %>
 </p>
-
-
-
-
 
 <p>
   <%= f.hidden_field :user_id , value: current_user.id %>
@@ -59,3 +55,5 @@
 <p>
   <%= f.submit %>
 </p>
+
+<% end %>
